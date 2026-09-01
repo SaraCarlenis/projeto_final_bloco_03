@@ -2,7 +2,7 @@
 
 Farmácia Vida+ é o frontend de um sistema de e-commerce farmacêutico, onde é possível gerenciar categorias e produtos (medicamentos, cosméticos e itens de bem-estar), consumindo uma API REST própria. Projeto desenvolvido como avaliação final do Bloco 03.
 
-🔗 **Deploy:** [projeto-final-bloco-03-mketbrbfd-saracarlenis.vercel.app](https://projeto-final-bloco-03-mketbrbfd-saracarlenis.vercel.app)
+🔗 **Deploy:** [projeto-final-bloco-03-95gm.vercel.app](https://projeto-final-bloco-03-95gm.vercel.app/)
 
 ## ✨ Funcionalidades
 
