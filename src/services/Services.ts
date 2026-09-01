@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://farmacia-ug0p.onrender.com'
+    baseURL: import.meta.env.VITE_API_URL
 })
 
 // O Backend da Farmácia não possui Security, então não é preciso enviar token
