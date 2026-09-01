@@ -1,75 +1,86 @@
-# React + TypeScript + Vite
+# 💊 Farmácia Vida+
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Farmácia Vida+ é o frontend de um sistema de e-commerce farmacêutico, onde é possível gerenciar categorias e produtos (medicamentos, cosméticos e itens de bem-estar), consumindo uma API REST própria. Projeto desenvolvido como avaliação final do Bloco 03.
 
-Currently, two official plugins are available:
+🔗 **Deploy:** [projeto-final-bloco-03-mketbrbfd-saracarlenis.vercel.app](https://projeto-final-bloco-03-mketbrbfd-saracarlenis.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Funcionalidades
 
-## React Compiler
+- CRUD completo de **Categoria** (listar, cadastrar, editar, deletar)
+- CRUD completo de **Produto** (listar, cadastrar, editar, deletar), com seleção de categoria já cadastrada
+- Busca de categorias por nome, integrada à API
+- Prevenção de categorias duplicadas ao cadastrar
+- Página inicial com produtos em destaque
+- Página "Sobre Nós"
+- Layout responsivo (mobile, tablet e desktop), com menu hambúrguer no mobile
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tecnologias utilizadas
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/)
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- [React Router DOM](https://reactrouter.com/)
+- [Axios](https://axios-http.com/) — consumo da API REST
+- [React Spinners](https://www.davidhu.io/react-spinners/) — loading
+- [Phosphor Icons](https://phosphoricons.com/) — ícones
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔌 API
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+O front-end consome a API REST disponível em:
+```
+https://farmacia-ug0p.onrender.com
+```
+Documentação (Swagger): [farmacia-ug0p.onrender.com/swagger-ui/swagger-ui/index.html](https://farmacia-ug0p.onrender.com/swagger-ui/swagger-ui/index.html)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+> ⚠️ A API está hospedada no plano gratuito do Render, então a primeira requisição depois de um tempo sem uso pode demorar alguns segundos (o servidor "acorda"). O backend não possui autenticação/Security.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 💻 Como rodar o projeto localmente
 
+Pré-requisitos: [Node.js](https://nodejs.org/) instalado.
+
+```bash
+# Clone o repositório
+git clone <url-do-seu-repositorio>
+
+# Acesse a pasta do projeto
+cd projeto_final_bloco_03
+
+# Instale as dependências
+npm install
+
+# Rode o projeto em modo de desenvolvimento
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+O projeto vai rodar em `http://localhost:5173` (porta padrão do Vite).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Estrutura do projeto
 
 ```
+src/
+├── components/
+│   ├── navbar/          # Navbar (com busca e menu responsivo)
+│   ├── footer/
+│   ├── categorias/      # ListaCategorias, FormCategoria, DeletarCategoria, CardCategorias
+│   └── produtos/         # ListaProdutos, FormProduto, DeletarProduto, CardProdutos
+├── models/               # Tipagens (Categoria, Produto)
+├── pages/                # Home, Sobre
+└── services/             # Comunicação com a API (Axios)
+```
+
+## 🌿 Organização das branches
+
+```
+main
+ ├─ 01_Componente_Home_navbar_footer   # Etapa 1 — estrutura inicial e estilização
+ ├─ 02_Rotas                            # Etapa 2 — rotas / e /home
+ ├─ 03_CRUD_Categoria                   # Etapa 3 — CRUD completo de Categoria
+ └─ 04_Extras                           # Recursos extras: CRUD de Produto, busca, Sobre Nós
+```
+
+## 👩‍💻 Autora
+
+Desenvolvido por **Sara Carlenis Hurtado Cortes**
+
+- [LinkedIn](https://www.linkedin.com/in/sara-hurtado-cortes/)
+- [Instagram](https://www.instagram.com/s.corte_/)
