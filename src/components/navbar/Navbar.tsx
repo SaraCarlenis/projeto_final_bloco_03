@@ -61,6 +61,8 @@ function Navbar() {
                 <div className="hidden md:flex items-center gap-6">
                     <Link to="/categorias" className="hover:underline">Categorias</Link>
                     <Link to="/cadastrarcategoria" className="hover:underline">Cadastrar Categoria</Link>
+                    <Link to="/produtos" className="hover:underline">Produtos</Link>
+                    <Link to="/sobre" className="hover:underline">Sobre Nós</Link>
                     <Link to="/perfil" aria-label="Perfil"><UserIcon size={26} /></Link>
                     <Link to="/carrinho" aria-label="Carrinho"><ShoppingCartIcon size={26} /></Link>
                 </div>
@@ -96,6 +98,8 @@ function Navbar() {
                     </form>
                     <Link to="/categorias" onClick={fecharMenu} className="hover:underline">Categorias</Link>
                     <Link to="/cadastrarcategoria" onClick={fecharMenu} className="hover:underline">Cadastrar Categoria</Link>
+                    <Link to="/produtos" onClick={fecharMenu} className="hover:underline">Produtos</Link>
+                    <Link to="/sobre" onClick={fecharMenu} className="hover:underline">Sobre Nós</Link>
                 </div>
             )}
 
