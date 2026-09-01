@@ -1,14 +1,35 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, type FormEvent } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ListIcon, XIcon, FirstAidKitIcon, MagnifyingGlassIcon, UserIcon, ShoppingCartIcon } from "@phosphor-icons/react";
 
 function Navbar() {
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
     // Controla a abertura do menu no formato mobile (hambúrguer)
     const [menuAberto, setMenuAberto] = useState(false);
 
+    // Termo digitado na barra de busca
+    const [termoBusca, setTermoBusca] = useState("");
+
+    // Mantém o campo sincronizado com a URL: limpa quando sai de /categorias
+    // ou quando o parâmetro ?nome= é removido (ex: clicando em "limpar busca")
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        setTermoBusca(params.get("nome") ?? "");
+    }, [location]);
+
     function fecharMenu() {
         setMenuAberto(false);
+    }
+
+    // Leva o usuário para /categorias já filtrado pelo nome digitado
+    function buscarCategoria(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const termo = termoBusca.trim();
+        navigate(termo ? `/categorias?nome=${encodeURIComponent(termo)}` : "/categorias");
+        fecharMenu();
     }
 
     return (
@@ -18,20 +39,22 @@ function Navbar() {
 
                 {/* Logo */}
                 <Link to="/" onClick={fecharMenu} className="flex items-center gap-2 text-xl font-extrabold shrink-0">
-                <FirstAidKitIcon size={30} weight="fill" className="text-white" />
+                    <FirstAidKitIcon size={30} weight="fill" className="text-white" />
                     Farmácia Vida+
                 </Link>
 
                 {/* Barra de busca — visível a partir do tablet/desktop */}
-                <form className="hidden md:flex flex-1 max-w-md">
+                <form onSubmit={buscarCategoria} className="hidden md:flex flex-1 max-w-md">
                     <input
-                    type="text"
-                    placeholder="Procurar"
-                    className="w-full rounded-l px-3 py-1.5 text-black outline-none border border-primary-dark"
-                />
-                <button type="submit" className="bg-primary-dark hover:bg-primary rounded-r px-3 flex items-center justify-center border border-primary-dark">
-                    <MagnifyingGlassIcon size={20} />
-                </button>
+                        type="text"
+                        placeholder="Procurar categoria"
+                        value={termoBusca}
+                        onChange={(e) => setTermoBusca(e.target.value)}
+                        className="w-full rounded-l px-3 py-1.5 text-black outline-none border border-primary-dark"
+                    />
+                    <button type="submit" className="bg-primary-dark hover:bg-primary rounded-r px-3 flex items-center justify-center border border-primary-dark">
+                        <MagnifyingGlassIcon size={20} />
+                    </button>
                 </form>
 
                 {/* Links + ícones — desktop */}
@@ -59,13 +82,15 @@ function Navbar() {
             {/* Menu suspenso do mobile — links + busca */}
             {menuAberto && (
                 <div className="md:hidden w-full flex flex-col items-center gap-4 pb-4 text-lg">
-                    <form className="flex w-4/5">
+                    <form onSubmit={buscarCategoria} className="flex w-4/5">
                         <input
                             type="text"
-                            placeholder="Procurar"
-                            className="w-full rounded-l px-3 py-1.5 text-black outline-none"
+                            placeholder="Procurar categoria"
+                            value={termoBusca}
+                            onChange={(e) => setTermoBusca(e.target.value)}
+                            className="w-full rounded-l px-3 py-1.5 text-black outline-none border border-primary-dark"
                         />
-                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 rounded-r px-3 flex items-center justify-center">
+                        <button type="submit" className="bg-primary-dark hover:bg-primary rounded-r px-3 flex items-center justify-center border border-primary-dark">
                             <MagnifyingGlassIcon size={20} />
                         </button>
                     </form>
